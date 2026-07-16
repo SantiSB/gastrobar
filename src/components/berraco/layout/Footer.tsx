@@ -63,7 +63,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="font-semibold text-[color:var(--color-ink-muted)] underline-offset-4 transition-colors duration-[var(--dur-base)] hover:text-orange-400 hover:underline"
             >
-              Passtix
+              PASSTIX
             </a>
             <span aria-hidden="true">·</span>
             ticketera oficial de Berraco

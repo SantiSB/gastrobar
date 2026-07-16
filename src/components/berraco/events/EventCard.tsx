@@ -5,7 +5,7 @@ import { cn } from '../../../lib/cn';
 
 interface EventCardProps {
   event: BerracoEvent;
-  /** Featured events use the larger 2-column layout on desktop. */
+  /** Featured events use larger typography; banner keeps its native ratio. */
   featured?: boolean;
 }
 
@@ -49,22 +49,16 @@ export function EventCard({ event, featured = false }: EventCardProps) {
         'border border-[var(--color-line)] bg-surface-2',
         'shadow-[var(--shadow-md)] transition-[transform,box-shadow,border-color] duration-[var(--dur-base)] ease-[var(--ease-brand)]',
         'hover:-translate-y-1 hover:border-[var(--color-line-strong)] hover:shadow-[var(--shadow-lg)]',
-        'active:translate-y-0',
-        featured ? 'lg:grid-cols-2' : 'grid-cols-1',
+        'active:translate-y-0 grid-cols-1',
         !isActive && 'opacity-90',
       )}
     >
-      {/* ---- Media ------------------------------------------- */}
-      <div
-        className={cn(
-          'relative overflow-hidden',
-          featured ? 'aspect-[16/10] lg:aspect-auto lg:h-full' : 'aspect-[16/9]',
-        )}
-      >
+      {/* ---- Media (banner shown at its native 1920×720 · 8:3 ratio) ---- */}
+      <div className="relative aspect-[1920/720] overflow-hidden">
         <img
           src={event.image}
           srcSet={srcSet}
-          sizes={featured ? '(min-width: 64rem) 50vw, 100vw' : '100vw'}
+          sizes="(min-width: 80rem) 1216px, 100vw"
           alt={event.imageAlt}
           width={1920}
           height={720}
@@ -92,7 +86,7 @@ export function EventCard({ event, featured = false }: EventCardProps) {
       </div>
 
       {/* ---- Body -------------------------------------------- */}
-      <div className={cn('flex flex-col gap-4 p-6 sm:p-8', featured && 'lg:justify-center lg:p-10')}>
+      <div className={cn('flex flex-col gap-4 p-6 sm:p-8', featured && 'sm:p-10')}>
         {event.tagline ? (
           <p className="eyebrow text-sage">{event.tagline}</p>
         ) : null}

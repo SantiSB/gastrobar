@@ -37,7 +37,7 @@ export function EventsSection() {
           className="inline-flex shrink-0 items-center gap-2 self-start rounded-[var(--radius-pill)] border border-[var(--color-line)] px-3.5 py-2 text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-ink-faint)] transition-colors duration-[var(--dur-base)] hover:border-[var(--color-line-strong)] hover:text-[color:var(--color-ink-muted)] sm:self-auto"
         >
           <Icon name="ticket" size={14} className="text-orange-400" />
-          Ticketera oficial · Passtix
+          Ticketera oficial · PASSTIX
         </a>
       </div>
 
