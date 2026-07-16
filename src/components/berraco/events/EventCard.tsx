@@ -18,7 +18,7 @@ const STATUS_LABEL: Record<BerracoEvent['status'], string> = {
 
 export function EventCard({ event, featured = false }: EventCardProps) {
   const isActive = event.status === 'upcoming';
-  const srcSet = `/events/${event.slug}-960.jpg 960w, ${event.image} 1600w`;
+  const srcSet = `/events/${event.slug}-960.jpg 960w, ${event.image} 1920w`;
 
   const MetaRow = (
     <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-[color:var(--color-ink-muted)]">
@@ -66,8 +66,8 @@ export function EventCard({ event, featured = false }: EventCardProps) {
           srcSet={srcSet}
           sizes={featured ? '(min-width: 64rem) 50vw, 100vw' : '100vw'}
           alt={event.imageAlt}
-          width={1600}
-          height={600}
+          width={1920}
+          height={720}
           loading="lazy"
           decoding="async"
           className={cn(

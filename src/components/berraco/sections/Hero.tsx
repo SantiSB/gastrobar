@@ -68,7 +68,7 @@ export function Hero() {
               </Button>
               <Button href="#cocinas" variant="outline" size="lg" className="sm:w-auto" block>
                 <Icon name="utensils" size={18} />
-                Conocer las cocinas
+                Ver menú
               </Button>
               <Button
                 href={WHATSAPP_RESERVE_URL}

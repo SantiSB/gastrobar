@@ -6,31 +6,30 @@ import { Icon } from '../ui/Icon';
 import { Reveal } from '../ui/Reveal';
 import { CUISINES, CUISINE_INTRO } from '../../../data/cuisines';
 import type { Cuisine } from '../../../types/berraco.types';
-import { WHATSAPP_RESERVE_URL } from '../../../lib/constants';
-import { cn } from '../../../lib/cn';
 
-const ACCENT_BAR: Record<Cuisine['accent'], string> = {
-  green: 'bg-sage',
-  orange: 'bg-orange',
-  sage: 'bg-sage',
-  brown: 'bg-orange-400',
-};
+/**
+ * "Ver menú" call to action — the digital carta is not live yet, so the
+ * button is intentionally blocked and paired with a "Muy pronto" badge.
+ */
+function MenuCta() {
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <Button as="button" type="button" variant="outline" size="lg" disabled aria-disabled="true">
+        <Icon name="utensils" size={18} />
+        Ver menú
+      </Button>
+      <Badge tone="orange">Muy pronto</Badge>
+    </div>
+  );
+}
 
-const ACCENT_NUM: Record<Cuisine['accent'], string> = {
-  green: 'text-sage',
-  orange: 'text-orange-400',
-  sage: 'text-sage',
-  brown: 'text-orange-400',
-};
-
+/** All cuisines share the exact same layout — todas igual de importantes. */
 function CuisineCard({ cuisine, index }: { cuisine: Cuisine; index: number }) {
   return (
     <Reveal delay={index * 100} className="h-full">
       <article className="group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-line)] bg-surface-2 p-7 transition-[transform,border-color] duration-[var(--dur-base)] ease-[var(--ease-brand)] hover:-translate-y-1 hover:border-[var(--color-line-strong)] sm:p-8">
-        <span className={cn('absolute inset-x-0 top-0 h-1', ACCENT_BAR[cuisine.accent])} />
-        <span className={cn('font-display text-5xl leading-none', ACCENT_NUM[cuisine.accent])}>
-          0{index + 1}
-        </span>
+        <span className="absolute inset-x-0 top-0 h-1 bg-orange" />
+        <span className="font-display text-5xl leading-none text-orange-400">0{index + 1}</span>
         <p className="eyebrow mt-6 text-[color:var(--color-ink-faint)]">{cuisine.kicker}</p>
         <h3 className="mt-1 font-display text-3xl font-semibold text-cream sm:text-4xl">
           {cuisine.name}
@@ -58,27 +57,21 @@ export function CuisinesSection() {
         title={CUISINE_INTRO.title}
         lead={CUISINE_INTRO.lead}
         align="center"
-        className="mb-12"
+        className="mb-8"
       />
 
-      <div className="grid gap-6 md:grid-cols-3">
+      {/* Ver menú — arriba */}
+      <MenuCta />
+
+      <div className="mt-12 grid gap-6 md:grid-cols-3">
         {CUISINES.map((cuisine, i) => (
           <CuisineCard key={cuisine.id} cuisine={cuisine} index={i} />
         ))}
       </div>
 
-      {/* Carta teaser — the full carta ships in a next stage */}
-      <div className="mt-12 flex flex-col items-center gap-5 rounded-[var(--radius-lg)] border border-[var(--color-line)] bg-surface-2 px-6 py-10 text-center">
-        <Icon name="utensils" size={30} className="text-orange-400" />
-        <h3 className="font-display text-2xl text-cream sm:text-3xl">La carta completa viene en camino</h3>
-        <p className="max-w-md text-[color:var(--color-ink-muted)]">
-          Estamos preparando la carta digital con todos los platos, coctelería y precios. Mientras
-          tanto, reserva tu mesa y vívelo en persona.
-        </p>
-        <Button href={WHATSAPP_RESERVE_URL} target="_blank" rel="noopener noreferrer" variant="primary">
-          <Icon name="whatsapp" size={18} />
-          Reservar mesa
-        </Button>
+      {/* Ver menú — abajo */}
+      <div className="mt-12">
+        <MenuCta />
       </div>
     </Section>
   );
