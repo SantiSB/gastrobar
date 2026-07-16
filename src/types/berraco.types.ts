@@ -1,60 +1,82 @@
-export interface TicketTier {
-  name: string;
-  price: string;
-  description: string;
-}
+/* ============================================================
+   BERRACO — Domain types
+   ============================================================ */
 
-export interface BerracoEvent {
-  id: string;
-  name: string;
-  date: string;
-  time: string;
-  description: string;
-  tickets: TicketTier[];
-  badges: string[];
-}
-
-export interface MenuItem {
-  id: string;
-  icon: string;
-  name: string;
-  description: string;
-}
-
-export interface Service {
-  id: string;
-  icon: string;
-  name: string;
-  description: string;
-}
-
+/* ---- Navigation ------------------------------------------- */
 export interface NavLink {
   label: string;
   href: string;
 }
 
-export interface EventCard {
+/* ---- Events ----------------------------------------------- */
+/**
+ * Lifecycle of an event.
+ * - `upcoming`  : on sale / announced.
+ * - `soldout`   : announced but no tickets left.
+ * - `finished`  : already happened (kept for archive).
+ * - `hidden`    : draft / inactive → never rendered.
+ */
+export type EventStatus = 'upcoming' | 'soldout' | 'finished' | 'hidden';
+
+export interface EventCategory {
+  /** Machine key, e.g. "reggaeton". */
+  key: string;
+  /** Human label rendered on the badge, e.g. "Reguetón". */
+  label: string;
+}
+
+export interface BerracoEvent {
   id: string;
+  /** URL-friendly identifier, also used as a stable key. */
+  slug: string;
   name: string;
-  subtitle: string;
-  date: string;
-  time: string;
-  genre: string;
+  category: EventCategory;
+  /** Short punchy line shown above the title. */
+  tagline?: string;
   description: string;
-  color: string;
-  colorBg: string;
-  colorGlow: string;
+  /** ISO date (YYYY-MM-DD) — used for chronological ordering. */
+  date: string;
+  /** Human date label, e.g. "Sábado 26 de julio". */
+  dateLabel: string;
+  /** Human time label, e.g. "9:00 PM". */
+  time: string;
+  location: string;
+  /** Public path to the banner/flyer image. */
+  image: string;
+  imageAlt: string;
+  /** External ticketing URL (opened safely in a new tab). */
+  ticketUrl: string;
+  status: EventStatus;
+  /** Marks the hero/featured event of the section. */
+  featured: boolean;
 }
 
-export interface FullMenuItem {
-  name: string;
-  description?: string;
-  price: string;
-}
-
-export interface MenuCategory {
+/* ---- Gastronomic concept (cocinas) ------------------------ */
+export interface Cuisine {
   id: string;
-  icon: string;
+  /** Concept / kitchen name, e.g. "AMAYA". */
   name: string;
-  items: FullMenuItem[];
+  /** One-line positioning, e.g. "Fusión México × Argentina". */
+  kicker: string;
+  description: string;
+  /** Representative tags — cuisines/styles, NOT dishes. */
+  tags: string[];
+  /** Accent color token used to theme the card. */
+  accent: 'green' | 'orange' | 'sage' | 'brown';
+}
+
+/* ---- Contact / social ------------------------------------- */
+export interface SocialLink {
+  label: string;
+  href: string;
+  handle: string;
+  /** Icon key resolved by the Icon component. */
+  icon: 'instagram' | 'whatsapp' | 'mail' | 'phone' | 'map' | 'clock';
+}
+
+export interface ContactItem {
+  label: string;
+  value: string;
+  href?: string;
+  icon: SocialLink['icon'];
 }
