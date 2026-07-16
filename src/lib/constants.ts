@@ -18,6 +18,9 @@ export const WHATSAPP_RESERVE_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${enc
 export const INSTAGRAM_URL = 'https://instagram.com/berraco.col';
 export const INSTAGRAM_HANDLE = '@berraco.col';
 
+/** Passtix — ticketera oficial de Berraco (gestiona los eventos). */
+export const PASSTIX_URL = 'https://www.passtix.co';
+
 export const EMAIL = 'berracogastrobar@gmail.com';
 export const PHONE_DISPLAY = '310 507 9441';
 export const PHONE_TEL = '+573105079441';

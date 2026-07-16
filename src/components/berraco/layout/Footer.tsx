@@ -1,7 +1,7 @@
 import { Wordmark } from '../brand/Wordmark';
 import { Icon } from '../ui/Icon';
 import { NAV_LINKS, SOCIALS, BRAND } from '../../../data/site';
-import { ADDRESS, CITY } from '../../../lib/constants';
+import { ADDRESS, CITY, PASSTIX_URL } from '../../../lib/constants';
 
 export function Footer() {
   const year = 2026;
@@ -53,9 +53,21 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-[var(--color-line)] pt-6 text-xs text-[color:var(--color-ink-faint)] sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-[var(--color-line)] pt-6 text-xs text-[color:var(--color-ink-faint)] sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} Berraco Gastrobar. Todos los derechos reservados.</p>
-          <p>Hecho con carácter en Pasto, Nariño.</p>
+          <p className="inline-flex items-center gap-1.5">
+            Entradas y sitio por
+            <a
+              href={PASSTIX_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-[color:var(--color-ink-muted)] underline-offset-4 transition-colors duration-[var(--dur-base)] hover:text-orange-400 hover:underline"
+            >
+              Passtix
+            </a>
+            <span aria-hidden="true">·</span>
+            ticketera oficial de Berraco
+          </p>
         </div>
       </div>
     </footer>
