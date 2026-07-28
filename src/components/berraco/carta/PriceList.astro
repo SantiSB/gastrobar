@@ -10,7 +10,7 @@ interface Props {
 const { prices, align = 'right' } = Astro.props;
 ---
 
-<div class:list={['flex flex-col gap-1', align === 'right' ? 'items-end text-right' : 'items-start']}>
+<span class:list={['flex flex-col gap-1', align === 'right' ? 'items-end text-right' : 'items-start']}>
   {
     prices.map((p) => (
       <span class="leading-tight">
@@ -25,4 +25,4 @@ const { prices, align = 'right' } = Astro.props;
       </span>
     ))
   }
-</div>
+</span>

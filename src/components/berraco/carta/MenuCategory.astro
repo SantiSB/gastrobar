@@ -7,6 +7,11 @@ interface Props {
 }
 
 const { category } = Astro.props;
+
+// A category with at least one photo shows the thumbnail column (placeholder
+// for the photo-less items). A category with NO photos renders as a clean
+// text-only list — no thumbnails at all (spirits, beers, sodas, sides).
+const hasPhotos = category.items.some((i) => i.image);
 ---
 
 <section
@@ -17,6 +22,6 @@ const { category } = Astro.props;
 >
   <h3 id={`${category.id}-title`} class="eyebrow mb-3 text-orange-400">{category.name}</h3>
   <ul class="rounded-[var(--radius-lg)] border border-[var(--color-line)] bg-surface px-4">
-    {category.items.map((item) => <MenuItemRow item={item} kitchen={category.kitchen} />)}
+    {category.items.map((item) => <MenuItemRow item={item} kitchen={category.kitchen} showThumb={hasPhotos} />)}
   </ul>
 </section>

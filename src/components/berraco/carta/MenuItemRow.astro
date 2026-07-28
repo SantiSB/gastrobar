@@ -7,63 +7,91 @@ import PriceList from './PriceList.astro';
 interface Props {
   item: MenuItem;
   kitchen: MenuKitchen;
+  /** Show the leading thumbnail column. False for photo-less categories
+      (spirits, beers, non-alcoholic, sides) → clean text-only list. */
+  showThumb?: boolean;
 }
 
-const { item, kitchen } = Astro.props;
+const { item, kitchen, showThumb = true } = Astro.props;
 const img = item.image ? getMenuImage(kitchen, item.image) : undefined;
 const full = img ? (await getImage({ src: img, width: 1200, format: 'webp' })).src : undefined;
 const search = `${item.name} ${item.description ?? ''}`.toLowerCase();
 ---
 
-<li class="menu-item flex items-start gap-3.5 border-b border-[var(--color-line)] py-3.5 last:border-b-0" data-search={search}>
+<li class="menu-item border-b border-[var(--color-line)] last:border-b-0" data-search={search}>
   {
     img ? (
+      /* Photo item — the WHOLE row is the button that opens the lightbox. */
       <button
         type="button"
-        class="lightbox-trigger h-[68px] w-[68px] shrink-0 overflow-hidden rounded-[var(--radius-md)]"
+        class="lightbox-trigger group flex w-full items-start gap-3.5 py-3.5 text-left transition-colors duration-[var(--dur-base)] hover:bg-[rgba(254,251,226,0.03)]"
         data-full={full}
         data-alt={item.name}
-        aria-label={`Ampliar foto de ${item.name}`}
+        aria-label={`Ver foto de ${item.name}`}
       >
-        <Image
-          src={img}
-          alt={item.name}
-          widths={[136, 204]}
-          sizes="68px"
-          loading="lazy"
-          decoding="async"
-          class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-        />
+        <span class="relative block h-[68px] w-[68px] shrink-0 overflow-hidden rounded-[var(--radius-md)]">
+          <Image
+            src={img}
+            alt={item.name}
+            widths={[136, 204]}
+            sizes="68px"
+            loading="lazy"
+            decoding="async"
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          {/* Affordance: signals the photo can be enlarged */}
+          <span class="pointer-events-none absolute bottom-1 right-1 flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[rgba(6,26,18,0.82)] text-cream ring-1 ring-[rgba(254,251,226,0.25)]">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+            </svg>
+          </span>
+        </span>
+
+        <span class="min-w-0 flex-1">
+          <span class="flex items-start justify-between gap-3">
+            <span class="min-w-0 font-display text-base font-semibold leading-snug text-cream">
+              {item.name}
+            </span>
+            <span class="shrink-0 max-w-[42%]">
+              <PriceList prices={item.prices} align="right" />
+            </span>
+          </span>
+          {item.description && (
+            <span class="mt-1 block text-[0.82rem] leading-relaxed text-[color:var(--color-ink-muted)]">
+              {item.description}
+            </span>
+          )}
+        </span>
       </button>
     ) : (
-      <div
-        class="menu-thumb-placeholder h-[68px] w-[68px] shrink-0 rounded-[var(--radius-md)]"
-        aria-hidden="true"
-      />
+      /* No-photo item — plain row. Placeholder thumb only in mixed categories. */
+      <div class="flex items-start gap-3.5 py-3.5">
+        {showThumb && (
+          <div
+            class="menu-thumb-placeholder h-[68px] w-[68px] shrink-0 rounded-[var(--radius-md)]"
+            aria-hidden="true"
+          />
+        )}
+        <div class="min-w-0 flex-1">
+          <div class="flex items-start justify-between gap-3">
+            <h4 class="min-w-0 font-display text-base font-semibold leading-snug text-cream">{item.name}</h4>
+            <div class="shrink-0 max-w-[42%]">
+              <PriceList prices={item.prices} align="right" />
+            </div>
+          </div>
+          {item.description && (
+            <p class="mt-1 text-[0.82rem] leading-relaxed text-[color:var(--color-ink-muted)]">
+              {item.description}
+            </p>
+          )}
+        </div>
+      </div>
     )
   }
-
-  <div class="min-w-0 flex-1">
-    {/* Top line: name (flexible) + price (right, capped so it never crushes text) */}
-    <div class="flex items-start justify-between gap-3">
-      <h4 class="min-w-0 font-display text-base font-semibold leading-snug text-cream">{item.name}</h4>
-      <div class="shrink-0 max-w-[42%]">
-        <PriceList prices={item.prices} align="right" />
-      </div>
-    </div>
-    {
-      item.description && (
-        <p class="mt-1 text-[0.82rem] leading-relaxed text-[color:var(--color-ink-muted)]">
-          {item.description}
-        </p>
-      )
-    }
-  </div>
 </li>
 
 <style>
-  /* Brand-glyph placeholder (rosetón) — defined once, reused per row.
-     Data-URI SVG so the markup isn't repeated ~89× across the drinks list. */
+  /* Brand-glyph placeholder (rosetón) — defined once, reused per row. */
   .menu-thumb-placeholder {
     background-color: var(--color-surface-2);
     background-repeat: no-repeat;
