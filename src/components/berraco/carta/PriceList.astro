@@ -1,0 +1,28 @@
+---
+import type { MenuPrice } from '../../../types/berraco.types';
+import { formatCOP } from '../../../lib/formatCurrency';
+
+interface Props {
+  prices: MenuPrice[];
+  align?: 'left' | 'right';
+}
+
+const { prices, align = 'right' } = Astro.props;
+---
+
+<div class:list={['flex flex-col gap-1', align === 'right' ? 'items-end text-right' : 'items-start']}>
+  {
+    prices.map((p) => (
+      <span class="leading-tight">
+        {p.label && (
+          <span class="block text-[0.6rem] uppercase leading-tight tracking-[0.06em] text-[color:var(--color-ink-faint)]">
+            {p.label}
+          </span>
+        )}
+        <span class="whitespace-nowrap font-display font-semibold text-orange-400">
+          {formatCOP(p.amount)}
+        </span>
+      </span>
+    ))
+  }
+</div>

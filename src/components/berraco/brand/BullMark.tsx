@@ -15,7 +15,7 @@ export function BullMark({ width = 220, className, priority = false }: BullMarkP
   const height = Math.round(width / RATIO);
   return (
     <img
-      src="/brand/mascota-berraco.png"
+      src="/brand/mascota-berraco.svg"
       alt="Mascota de Berraco, un toro con chaqueta bomber"
       width={width}
       height={height}

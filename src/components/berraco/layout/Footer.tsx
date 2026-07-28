@@ -1,9 +1,15 @@
 import { Wordmark } from '../brand/Wordmark';
 import { Icon } from '../ui/Icon';
 import { NAV_LINKS, SOCIALS, BRAND } from '../../../data/site';
+import type { NavLink } from '../../../types/berraco.types';
 import { ADDRESS, CITY, PASSTIX_URL } from '../../../lib/constants';
 
-export function Footer() {
+interface FooterProps {
+  /** Nav links to render (default: home hash links). */
+  links?: NavLink[];
+}
+
+export function Footer({ links = NAV_LINKS }: FooterProps) {
   const year = 2026;
 
   return (
@@ -20,7 +26,7 @@ export function Footer() {
           <nav aria-label="Secundaria">
             <p className="eyebrow mb-4 text-[color:var(--color-ink-faint)]">Explora</p>
             <ul className="space-y-2.5">
-              {NAV_LINKS.map((link) => (
+              {links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}

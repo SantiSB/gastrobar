@@ -1,0 +1,49 @@
+---
+---
+
+<dialog id="carta-lightbox" class="carta-lightbox" aria-label="Foto ampliada">
+  <button type="button" id="carta-lightbox-close" class="carta-lightbox-close" aria-label="Cerrar foto">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+      <path d="M6 6l12 12M18 6 6 18"></path>
+    </svg>
+  </button>
+  <img id="carta-lightbox-img" alt="" />
+</dialog>
+
+<style>
+  .carta-lightbox {
+    max-width: min(92vw, 900px);
+    max-height: 90vh;
+    width: auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    overflow: visible;
+  }
+  .carta-lightbox::backdrop {
+    background: rgba(3, 12, 8, 0.86);
+    backdrop-filter: blur(6px);
+  }
+  .carta-lightbox img {
+    display: block;
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  .carta-lightbox-close {
+    position: absolute;
+    top: -0.75rem;
+    right: -0.75rem;
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-pill);
+    background: var(--color-cream);
+    color: var(--color-green-950);
+    border: none;
+    cursor: pointer;
+  }
+</style>

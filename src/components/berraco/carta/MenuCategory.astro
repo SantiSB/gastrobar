@@ -1,0 +1,22 @@
+---
+import type { MenuCategory } from '../../../types/berraco.types';
+import MenuItemRow from './MenuItemRow.astro';
+
+interface Props {
+  category: MenuCategory;
+}
+
+const { category } = Astro.props;
+---
+
+<section
+  id={category.id}
+  class="carta-category scroll-mt-40"
+  style="content-visibility: auto; contain-intrinsic-size: auto 480px;"
+  aria-labelledby={`${category.id}-title`}
+>
+  <h3 id={`${category.id}-title`} class="eyebrow mb-3 text-orange-400">{category.name}</h3>
+  <ul class="rounded-[var(--radius-lg)] border border-[var(--color-line)] bg-surface px-4">
+    {category.items.map((item) => <MenuItemRow item={item} kitchen={category.kitchen} />)}
+  </ul>
+</section>

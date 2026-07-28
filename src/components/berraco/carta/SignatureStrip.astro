@@ -1,0 +1,64 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import type { MenuItem, MenuKitchen } from '../../../types/berraco.types';
+import { getMenuImage } from '../../../lib/menuImages';
+import { formatCOP } from '../../../lib/formatCurrency';
+
+interface Props {
+  items: MenuItem[];
+  kitchen: MenuKitchen;
+  /** Eager-load the first card (LCP candidate). */
+  eagerFirst?: boolean;
+}
+
+const { items, kitchen, eagerFirst = false } = Astro.props;
+
+const cards = await Promise.all(
+  items.map(async (item, i) => {
+    const img = getMenuImage(kitchen, item.image!);
+    const full = img ? (await getImage({ src: img, width: 1200, format: 'webp' })).src : undefined;
+    return { item, img, full, eager: eagerFirst && i === 0 };
+  }),
+);
+---
+
+{
+  cards.length > 0 && (
+    <div class="mb-10">
+      <h3 class="eyebrow mb-3 text-orange-400">Destacados</h3>
+      <div class="-mx-[var(--space-gutter)] overflow-x-auto px-[var(--space-gutter)] pb-2" style="scroll-snap-type: x mandatory;">
+        <ul class="flex gap-4">
+        {cards.map(({ item, img, full, eager }) => (
+          <li class="w-60 shrink-0 sm:w-64" style="scroll-snap-align: start;">
+            <button
+              type="button"
+              class="lightbox-trigger group block w-full overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-line)]"
+              data-full={full}
+              data-alt={item.name}
+              aria-label={`Ampliar foto de ${item.name}`}
+            >
+              {img && (
+                <Picture
+                  src={img}
+                  alt={item.name}
+                  formats={['avif', 'webp']}
+                  fallbackFormat="webp"
+                  widths={[400, 600]}
+                  sizes="256px"
+                  loading={eager ? 'eager' : 'lazy'}
+                  decoding={eager ? 'auto' : 'async'}
+                  pictureAttributes={{ class: 'contents' }}
+                  class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  {...(eager ? { fetchpriority: 'high' } : {})}
+                />
+              )}
+            </button>
+            <p class="mt-2 font-display text-base font-semibold leading-tight text-cream">{item.name}</p>
+            <p class="text-sm font-semibold text-orange-400">{formatCOP(item.prices[0].amount)}</p>
+          </li>
+        ))}
+        </ul>
+      </div>
+    </div>
+  )
+}

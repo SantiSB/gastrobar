@@ -4,9 +4,17 @@ import { Wordmark } from '../brand/Wordmark';
 import { Button } from '../ui/Button';
 import { Icon } from '../ui/Icon';
 import { NAV_LINKS } from '../../../data/site';
+import type { NavLink } from '../../../types/berraco.types';
 import { WHATSAPP_RESERVE_URL } from '../../../lib/constants';
 
-export function Navbar() {
+interface NavbarProps {
+  /** Nav links to render (default: home hash links). */
+  links?: NavLink[];
+  /** Where the logo points (default: home hero anchor). */
+  homeHref?: string;
+}
+
+export function Navbar({ links = NAV_LINKS, homeHref = '#inicio' }: NavbarProps) {
   const reduced = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -41,13 +49,13 @@ export function Navbar() {
       transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <nav className="container-berraco flex h-16 items-center justify-between md:h-20" aria-label="Principal">
-        <a href="#inicio" className="flex items-center" aria-label="Berraco Gastrobar — inicio">
+        <a href={homeHref} className="flex items-center" aria-label="Berraco Gastrobar — inicio">
           <Wordmark variant="cream" height={26} priority className="md:h-8" />
         </a>
 
         {/* Desktop links */}
         <ul className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
+          {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -103,7 +111,7 @@ export function Navbar() {
             className="overflow-hidden border-t border-[var(--color-line)] md:hidden"
           >
             <ul className="container-berraco flex flex-col py-4">
-              {NAV_LINKS.map((link) => (
+              {links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}

@@ -6,28 +6,11 @@ import type { BerracoEvent } from '../types/berraco.types';
    ➜ To add an event: append a new object to EVENTS.
    ➜ To hide one: set `status: 'hidden'`.
    ➜ The section renders from these helpers, never from markup.
-   Only ONE real event exists today (Perros y Gatas).
+   No event is currently scheduled — EventGrid falls back to its
+   empty state until the next one is added here.
    ============================================================ */
 
-export const EVENTS: BerracoEvent[] = [
-  {
-    id: 'evt-perros-y-gatas',
-    slug: 'perros-y-gatas',
-    name: 'Perros y Gatas',
-    category: { key: 'reggaeton', label: 'Reggaeton' },
-    tagline: 'La fiesta más perreo del sur',
-    description: 'Una noche de reggaeton sin tregua. El flow más berraco de Pasto.',
-    date: '2026-07-18',
-    dateLabel: 'Sábado 18 de julio',
-    time: '8:00 PM',
-    location: 'Berraco Gastrobar · Pasto',
-    image: '/events/perros-y-gatas.jpg',
-    imageAlt: 'Banner del evento Perros y Gatas — fiesta de reggaeton en Berraco Gastrobar',
-    ticketUrl: 'https://www.passtix.co/eventos/perros-y-gatas',
-    status: 'upcoming',
-    featured: true,
-  },
-];
+export const EVENTS: BerracoEvent[] = [];
 
 /* ---- Selectors -------------------------------------------- */
 

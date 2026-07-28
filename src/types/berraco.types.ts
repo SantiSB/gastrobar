@@ -65,6 +65,47 @@ export interface Cuisine {
   accent: 'green' | 'orange' | 'sage' | 'brown';
 }
 
+/* ---- Menu / carta ----------------------------------------- */
+/** The three worlds of the carta. */
+export type MenuKitchen = 'berraco' | 'amaya' | 'bebidas';
+
+/**
+ * A single price line. `amount` is COP as a raw number (e.g. 33900) so it
+ * can be validated/sorted; formatting lives in `lib/formatCurrency.ts`.
+ * `label` distinguishes variants (e.g. "Jarra 1.600 ml", "Botella").
+ */
+export interface MenuPrice {
+  label?: string;
+  amount: number;
+}
+
+export interface MenuItem {
+  /** Unique slug across the whole carta; also the image basename. */
+  id: string;
+  name: string;
+  /** Optional — spirits, beers and sodas are name + price only. */
+  description?: string;
+  /** One or more prices (unidad/jarra, copa/botella, personal/compartir…). */
+  prices: MenuPrice[];
+  /**
+   * Image basename (without extension) inside
+   * `src/assets/menu/<kitchen>/`. Omitted when the item has no photo.
+   */
+  image?: string;
+  /** Optional dietary/style chips — only set when they add value. */
+  tags?: string[];
+  /** Marks a visually featured dish/cocktail (shown in the destacados strip). */
+  signature?: boolean;
+}
+
+export interface MenuCategory {
+  /** Unique category id, e.g. "berraco-entradas". */
+  id: string;
+  name: string;
+  kitchen: MenuKitchen;
+  items: MenuItem[];
+}
+
 /* ---- Contact / social ------------------------------------- */
 export interface SocialLink {
   label: string;

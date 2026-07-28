@@ -11,7 +11,10 @@ export type IconName =
   | 'ticket'
   | 'utensils'
   | 'calendar'
-  | 'external';
+  | 'external'
+  | 'search'
+  | 'close'
+  | 'chevron-down';
 
 interface IconProps extends SVGProps<SVGSVGElement> {
   name: IconName;
@@ -72,6 +75,14 @@ const PATHS: Record<IconName, React.ReactNode> = {
     </>
   ),
   external: <path d="M14 5h5v5M19 5l-9 9M12 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" />,
+  search: (
+    <>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </>
+  ),
+  close: <path d="M6 6l12 12M18 6 6 18" />,
+  'chevron-down': <path d="m6 9 6 6 6-6" />,
 };
 
 export function Icon({ name, size = 20, title, ...props }: IconProps) {

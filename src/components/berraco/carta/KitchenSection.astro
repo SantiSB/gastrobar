@@ -1,0 +1,35 @@
+---
+import type { MenuKitchen } from '../../../types/berraco.types';
+import { getCategories, getSignatureItems, KITCHENS } from '../../../data/menu';
+import MenuCategory from './MenuCategory.astro';
+import SignatureStrip from './SignatureStrip.astro';
+
+interface Props {
+  kitchen: MenuKitchen;
+  /** Eager-load the first signature image (LCP). */
+  eagerFirst?: boolean;
+}
+
+const { kitchen, eagerFirst = false } = Astro.props;
+const meta = KITCHENS.find((k) => k.id === kitchen)!;
+const categories = getCategories(kitchen);
+const signatures = getSignatureItems(kitchen);
+---
+
+<section
+  id={`kitchen-${kitchen}`}
+  class="carta-kitchen scroll-mt-44"
+  data-kitchen={kitchen}
+  aria-labelledby={`kitchen-${kitchen}-title`}
+>
+  <div class="mb-6">
+    <p class="eyebrow text-sage">{meta.kicker}</p>
+    <h2 id={`kitchen-${kitchen}-title`} class="display-2 text-cream">{meta.label}</h2>
+  </div>
+
+  <SignatureStrip items={signatures} kitchen={kitchen} eagerFirst={eagerFirst} />
+
+  <div class="flex flex-col gap-10">
+    {categories.map((category) => <MenuCategory category={category} />)}
+  </div>
+</section>

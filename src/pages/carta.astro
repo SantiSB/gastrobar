@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Navbar } from '../components/berraco/layout/Navbar';
+import { Footer } from '../components/berraco/layout/Footer';
+import CartaHeader from '../components/berraco/carta/CartaHeader.astro';
+import KitchenNav from '../components/berraco/carta/KitchenNav.astro';
+import KitchenSection from '../components/berraco/carta/KitchenSection.astro';
+import Lightbox from '../components/berraco/carta/Lightbox.astro';
+import { NAV_LINKS_ABSOLUTE } from '../data/site';
+---
+
+<Layout
+  title="Carta — Berraco Gastrobar · Pasto"
+  description="La carta completa de Berraco Gastrobar: Cocina Berraco, la fusión México × Argentina de AMAYA y coctelería de autor. Precios y platos en Palermo, Pasto (Nariño)."
+>
+  <div class="bg-bg">
+    <Navbar client:load links={NAV_LINKS_ABSOLUTE} homeHref="/" />
+
+    <main class="container-berraco pt-16 md:pt-20">
+      <CartaHeader />
+      <KitchenNav />
+
+      <div class="flex flex-col gap-16 pb-16">
+        <KitchenSection kitchen="berraco" eagerFirst />
+        <KitchenSection kitchen="amaya" />
+        <KitchenSection kitchen="bebidas" />
+
+        <p
+          id="carta-empty"
+          hidden
+          class="py-16 text-center text-[color:var(--color-ink-muted)]"
+        >
+          No encontramos platos con esa búsqueda. Prueba con otra palabra.
+        </p>
+      </div>
+    </main>
+
+    <Footer links={NAV_LINKS_ABSOLUTE} />
+    <Lightbox />
+  </div>
+
+  <script>
+    import '../components/berraco/carta/carta.client.ts';
+  </script>
+</Layout>

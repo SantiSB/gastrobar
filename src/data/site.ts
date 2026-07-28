@@ -18,10 +18,24 @@ import {
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Eventos', href: '#eventos' },
+  { label: 'Carta', href: '/carta' },
   { label: 'Cocinas', href: '#cocinas' },
   { label: 'Reservas', href: '#reservas' },
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Contacto', href: '#contacto' },
+];
+
+/**
+ * Same links but with absolute hrefs — for secondary pages (e.g. /carta)
+ * where in-page hashes must point back to the home page's sections.
+ */
+export const NAV_LINKS_ABSOLUTE: NavLink[] = [
+  { label: 'Eventos', href: '/#eventos' },
+  { label: 'Carta', href: '/carta' },
+  { label: 'Cocinas', href: '/#cocinas' },
+  { label: 'Reservas', href: '/#reservas' },
+  { label: 'Nosotros', href: '/#nosotros' },
+  { label: 'Contacto', href: '/#contacto' },
 ];
 
 /** Brand voice & storytelling — reorganized from the brand manual. */

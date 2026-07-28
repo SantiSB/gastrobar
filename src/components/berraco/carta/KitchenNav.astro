@@ -1,0 +1,68 @@
+---
+import { KITCHENS } from '../../../data/menu';
+---
+
+<div
+  id="carta-nav"
+  class="sticky top-16 z-[var(--z-sticky)] -mx-[var(--space-gutter)] mb-10 border-y border-[var(--color-line)] bg-[rgba(6,26,18,0.94)] px-[var(--space-gutter)] py-3 backdrop-blur-md md:top-20"
+>
+  {/* Row 1 — kitchen tabs (always all visible, no horizontal scroll) */}
+  <div class="grid grid-cols-3 gap-1.5" aria-label="Cocinas">
+    {
+      KITCHENS.map((k, i) => (
+        <a
+          href={`#kitchen-${k.id}`}
+          data-kitchen-tab={k.id}
+          class:list={[
+            'carta-tab flex items-center justify-center rounded-[var(--radius-pill)] px-2 py-2.5 text-center text-[0.72rem] font-semibold uppercase tracking-[0.1em] transition-colors duration-[var(--dur-base)]',
+            i === 0 && 'is-active',
+          ]}
+        >
+          {k.tab}
+        </a>
+      ))
+    }
+  </div>
+
+  {/* Row 2 — search, its own full-width row */}
+  <label class="mt-2.5 flex items-center gap-2 rounded-[var(--radius-pill)] border border-[var(--color-line)] px-3.5 py-2.5 focus-within:border-[var(--color-line-strong)]">
+    <span class="sr-only">Buscar en la carta</span>
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      class="shrink-0 text-sage"
+      aria-hidden="true"
+    >
+      <circle cx="11" cy="11" r="7"></circle>
+      <path d="m20 20-3.5-3.5"></path>
+    </svg>
+    <input
+      id="carta-search"
+      type="search"
+      placeholder="Buscar plato o bebida…"
+      autocomplete="off"
+      class="w-full min-w-0 bg-transparent text-sm text-cream placeholder:text-[color:var(--color-ink-faint)] focus:outline-none"
+    />
+  </label>
+</div>
+
+<style>
+  .carta-tab {
+    color: var(--color-ink-muted);
+    border: 1px solid var(--color-line);
+  }
+  .carta-tab:hover {
+    color: var(--color-cream);
+    border-color: var(--color-line-strong);
+  }
+  .carta-tab.is-active {
+    background: var(--color-orange);
+    border-color: transparent;
+    color: var(--color-cream);
+  }
+</style>

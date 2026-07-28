@@ -7,18 +7,14 @@ import { Reveal } from '../ui/Reveal';
 import { CUISINES, CUISINE_INTRO } from '../../../data/cuisines';
 import type { Cuisine } from '../../../types/berraco.types';
 
-/**
- * "Ver menú" call to action — the digital carta is not live yet, so the
- * button is intentionally blocked and paired with a "Muy pronto" badge.
- */
+/** "Ver carta" call to action — links to the full digital menu at /carta. */
 function MenuCta() {
   return (
-    <div className="flex flex-col items-center gap-3">
-      <Button as="button" type="button" variant="outline" size="lg" disabled aria-disabled="true">
+    <div className="flex justify-center">
+      <Button href="/carta" variant="secondary" size="lg">
         <Icon name="utensils" size={18} />
-        Ver menú
+        Ver la carta completa
       </Button>
-      <Badge tone="orange">Muy pronto</Badge>
     </div>
   );
 }

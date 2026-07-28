@@ -1,0 +1,75 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { MenuItem, MenuKitchen } from '../../../types/berraco.types';
+import { getMenuImage } from '../../../lib/menuImages';
+import PriceList from './PriceList.astro';
+
+interface Props {
+  item: MenuItem;
+  kitchen: MenuKitchen;
+}
+
+const { item, kitchen } = Astro.props;
+const img = item.image ? getMenuImage(kitchen, item.image) : undefined;
+const full = img ? (await getImage({ src: img, width: 1200, format: 'webp' })).src : undefined;
+const search = `${item.name} ${item.description ?? ''}`.toLowerCase();
+---
+
+<li class="menu-item flex items-start gap-3.5 border-b border-[var(--color-line)] py-3.5 last:border-b-0" data-search={search}>
+  {
+    img ? (
+      <button
+        type="button"
+        class="lightbox-trigger h-[68px] w-[68px] shrink-0 overflow-hidden rounded-[var(--radius-md)]"
+        data-full={full}
+        data-alt={item.name}
+        aria-label={`Ampliar foto de ${item.name}`}
+      >
+        <Image
+          src={img}
+          alt={item.name}
+          widths={[136, 204]}
+          sizes="68px"
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </button>
+    ) : (
+      <div
+        class="menu-thumb-placeholder h-[68px] w-[68px] shrink-0 rounded-[var(--radius-md)]"
+        aria-hidden="true"
+      />
+    )
+  }
+
+  <div class="min-w-0 flex-1">
+    {/* Top line: name (flexible) + price (right, capped so it never crushes text) */}
+    <div class="flex items-start justify-between gap-3">
+      <h4 class="min-w-0 font-display text-base font-semibold leading-snug text-cream">{item.name}</h4>
+      <div class="shrink-0 max-w-[42%]">
+        <PriceList prices={item.prices} align="right" />
+      </div>
+    </div>
+    {
+      item.description && (
+        <p class="mt-1 text-[0.82rem] leading-relaxed text-[color:var(--color-ink-muted)]">
+          {item.description}
+        </p>
+      )
+    }
+  </div>
+</li>
+
+<style>
+  /* Brand-glyph placeholder (rosetón) — defined once, reused per row.
+     Data-URI SVG so the markup isn't repeated ~89× across the drinks list. */
+  .menu-thumb-placeholder {
+    background-color: var(--color-surface-2);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 46px 46px;
+    border: 1px solid var(--color-line);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='%23aab388' fill-opacity='0.28'%3E%3Ccircle cx='100' cy='100' r='96' fill='none' stroke='%23aab388' stroke-opacity='0.28' stroke-width='3'/%3E%3Cg%3E%3Cpath d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(30 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(60 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(90 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(120 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(150 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(180 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(210 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(240 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(270 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(300 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Cpath transform='rotate(330 100 100)' d='M100 40 C110 58 110 74 100 88 C90 74 90 58 100 40 Z'/%3E%3Ccircle cx='100' cy='100' r='13'/%3E%3C/g%3E%3C/svg%3E");
+  }
+</style>
