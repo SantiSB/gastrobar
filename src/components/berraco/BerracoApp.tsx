@@ -9,7 +9,7 @@ import { ContactSection } from './sections/ContactSection';
 
 /**
  * Berraco landing — one page.
- * Content priority (per brief): Hero → Eventos → Cocinas →
+ * Content priority: Hero → Cocinas (carta) → Eventos →
  * Reservas → Nosotros → Contacto → Footer.
  */
 export default function BerracoApp() {
@@ -18,8 +18,8 @@ export default function BerracoApp() {
       <Navbar />
       <main>
         <Hero />
-        <EventsSection />
         <CuisinesSection />
+        <EventsSection />
         <ReservationsSection />
         <StorySection />
         <ContactSection />

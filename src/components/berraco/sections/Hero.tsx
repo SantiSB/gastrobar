@@ -62,13 +62,13 @@ export function Hero() {
 
             {/* CTAs */}
             <div className="rise rise-4 mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Button href="#eventos" variant="primary" size="lg" className="sm:w-auto" block>
-                <Icon name="ticket" size={18} />
-                Ver eventos
-              </Button>
-              <Button href="/carta" variant="outline" size="lg" className="sm:w-auto" block>
+              <Button href="/carta" variant="primary" size="lg" className="sm:w-auto" block>
                 <Icon name="utensils" size={18} />
                 Ver la carta
+              </Button>
+              <Button href="#eventos" variant="outline" size="lg" className="sm:w-auto" block>
+                <Icon name="ticket" size={18} />
+                Ver eventos
               </Button>
               <Button
                 href={WHATSAPP_RESERVE_URL}
