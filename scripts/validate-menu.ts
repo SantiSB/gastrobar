@@ -24,7 +24,7 @@ const KITCHENS: { id: MenuKitchen; label: string }[] = [
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ASSETS = join(HERE, '..', 'src', 'assets', 'menu');
-const EXPECTED = 119;
+const EXPECTED = 128;
 const TOLERANCE = 3;
 
 const errors: string[] = [];
