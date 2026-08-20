@@ -1,19 +1,17 @@
 import type { MenuCategory, MenuItem, MenuKitchen } from '../../types/berraco.types';
 import { BERRACO_CATEGORIES } from './berraco';
-import { AMAYA_CATEGORIES } from './amaya';
 import { BEBIDAS_CATEGORIES } from './bebidas';
 
 /* ============================================================
    BERRACO — Carta (fuente de verdad agregada)
    ------------------------------------------------------------
-   ➜ Editar productos/precios: en berraco.ts / amaya.ts / bebidas.ts.
+   ➜ Editar productos/precios: en berraco.ts / bebidas.ts.
    ➜ La página /carta se renderiza desde estos selectores.
    ➜ Validar con: node --experimental-strip-types scripts/validate-menu.ts
    ============================================================ */
 
 export const MENU: MenuCategory[] = [
   ...BERRACO_CATEGORIES,
-  ...AMAYA_CATEGORIES,
   ...BEBIDAS_CATEGORIES,
 ];
 
@@ -29,7 +27,6 @@ export interface KitchenMeta {
 
 export const KITCHENS: KitchenMeta[] = [
   { id: 'berraco', label: 'Cocina Berraco', tab: 'Berraco', kicker: 'Sabor del sur reinventado' },
-  { id: 'amaya', label: 'Cocina AMAYA', tab: 'AMAYA', kicker: 'Fusión México × Argentina' },
   { id: 'bebidas', label: 'Bebidas', tab: 'Bebidas', kicker: 'La barra Berraco' },
 ];
 

@@ -31,15 +31,6 @@ export const BERRACO_CATEGORIES: MenuCategory[] = [
         image: 'tostada-urkunina',
       },
       {
-        id: 'burrata-mediterranea',
-        name: 'Burrata Mediterránea',
-        description:
-          'Suave queso burrata servido con tomates confitados, pesto y cebolla crispy. Finalizado con reducción de balsámico, sour cream y acompañado de pan baguette tostado.',
-        prices: [{ amount: 32900 }],
-        image: 'burrata',
-        signature: true,
-      },
-      {
         id: 'empanada-luna-andina',
         name: 'Empanada Luna Andina',
         description:

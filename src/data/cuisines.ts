@@ -19,15 +19,6 @@ export const CUISINES: Cuisine[] = [
     accent: 'brown',
   },
   {
-    id: 'amaya',
-    name: 'AMAYA',
-    kicker: 'Fusión México × Argentina',
-    description:
-      'Cambiamos de nacionalidad: una mezcla de fuego, sabor y pasión donde el picante mexicano se encuentra con el asado argentino. Cada plato celebra lo mejor de ambas culturas.',
-    tags: ['México', 'Argentina', 'Fuego', 'Asado'],
-    accent: 'green',
-  },
-  {
     id: 'cocteleria-de-autor',
     name: 'Coctelería de Autor',
     kicker: 'La barra Berraco',
@@ -41,6 +32,6 @@ export const CUISINES: Cuisine[] = [
 /** House specials teaser — presented conceptually, without the carta. */
 export const CUISINE_INTRO = {
   eyebrow: 'Propuesta gastronómica',
-  title: 'Tres mundos, un mismo carácter',
+  title: 'Dos mundos, un mismo carácter',
   lead: 'En Berraco la tradición se transforma en innovación. Gastronomía local reinventada y coctelería creativa que rinden homenaje a la cultura nariñense y colombiana.',
 } as const;

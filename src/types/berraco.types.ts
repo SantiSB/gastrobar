@@ -54,7 +54,7 @@ export interface BerracoEvent {
 /* ---- Gastronomic concept (cocinas) ------------------------ */
 export interface Cuisine {
   id: string;
-  /** Concept / kitchen name, e.g. "AMAYA". */
+  /** Concept / kitchen name, e.g. "Cocina Berraco". */
   name: string;
   /** One-line positioning, e.g. "Fusión México × Argentina". */
   kicker: string;
@@ -67,7 +67,7 @@ export interface Cuisine {
 
 /* ---- Menu / carta ----------------------------------------- */
 /** The three worlds of the carta. */
-export type MenuKitchen = 'berraco' | 'amaya' | 'bebidas';
+export type MenuKitchen = 'berraco' | 'bebidas';
 
 /**
  * A single price line. `amount` is COP as a raw number (e.g. 33900) so it

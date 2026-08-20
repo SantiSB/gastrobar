@@ -9,11 +9,10 @@ por Astro. No hay CMS, backend ni base de datos. Actualizar = editar datos → v
 ```
 src/data/menu/
   berraco.ts    Cocina Berraco (entradas, para compartir, platos, adicionales, especiales)
-  amaya.ts      Cocina AMAYA (entradas, fuertes, postres)
   bebidas.ts    Barra (cócteles, vinos, hervidos, cervezas, licores, sin licor)
   index.ts      Agrega todo + selectores (KITCHENS, getCategories, getSignatureItems…)
 
-src/assets/menu/{berraco,amaya,bebidas}/<slug>.jpg   Imágenes ("masters" web ~1600px)
+src/assets/menu/{berraco,bebidas}/<slug>.jpg   Imágenes ("masters" web ~1600px)
 
 src/components/berraco/carta/   Componentes .astro de la página
 src/pages/carta.astro           La página /carta

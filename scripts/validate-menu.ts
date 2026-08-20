@@ -10,21 +10,19 @@ import { readdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { BERRACO_CATEGORIES } from '../src/data/menu/berraco.ts';
-import { AMAYA_CATEGORIES } from '../src/data/menu/amaya.ts';
 import { BEBIDAS_CATEGORIES } from '../src/data/menu/bebidas.ts';
 import type { MenuKitchen } from '../src/types/berraco.types';
 
 // Rebuilt locally (not via index.ts) so raw Node ESM needs no extensionless resolution.
-const MENU = [...BERRACO_CATEGORIES, ...AMAYA_CATEGORIES, ...BEBIDAS_CATEGORIES];
+const MENU = [...BERRACO_CATEGORIES, ...BEBIDAS_CATEGORIES];
 const KITCHENS: { id: MenuKitchen; label: string }[] = [
   { id: 'berraco', label: 'Cocina Berraco' },
-  { id: 'amaya', label: 'AMAYA' },
   { id: 'bebidas', label: 'Bebidas' },
 ];
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ASSETS = join(HERE, '..', 'src', 'assets', 'menu');
-const EXPECTED = 128;
+const EXPECTED = 105;
 const TOLERANCE = 3;
 
 const errors: string[] = [];

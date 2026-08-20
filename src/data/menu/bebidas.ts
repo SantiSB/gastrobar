@@ -58,6 +58,7 @@ export const BEBIDAS_CATEGORIES: MenuCategory[] = [
           { label: 'Unidad', amount: 32000 },
           { label: 'Jarra', amount: 120000 },
         ],
+        image: 'galeras-blanco',
       },
       {
         id: 'la-congona',
@@ -68,6 +69,7 @@ export const BEBIDAS_CATEGORIES: MenuCategory[] = [
           { label: 'Unidad', amount: 32000 },
           { label: 'Jarra', amount: 120000 },
         ],
+        image: 'la-congona',
       },
       {
         id: 'raiz-brava',
@@ -78,6 +80,7 @@ export const BEBIDAS_CATEGORIES: MenuCategory[] = [
           { label: 'Unidad', amount: 32000 },
           { label: 'Jarra', amount: 120000 },
         ],
+        image: 'raiz-brava',
       },
       {
         id: 'doble-origen',
@@ -160,6 +163,7 @@ export const BEBIDAS_CATEGORIES: MenuCategory[] = [
           { label: 'Unidad', amount: 30000 },
           { label: 'Jarra', amount: 115000 },
         ],
+        image: 'long-island',
       },
       {
         id: 'pina-colada',
@@ -170,6 +174,7 @@ export const BEBIDAS_CATEGORIES: MenuCategory[] = [
           { label: 'Unidad', amount: 28000 },
           { label: 'Jarra', amount: 115000 },
         ],
+        image: 'pina-colada',
       },
     ],
   },
