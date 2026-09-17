@@ -340,7 +340,7 @@ export const BEBIDAS_CATEGORIES: MenuCategory[] = [
         id: 'smirnoff-tamarindo',
         name: 'Smirnoff Tamarindo',
         prices: [
-          { label: 'Botella', amount: 90000 },
+          { label: 'Botella', amount: 80000 },
           { label: 'Media', amount: 70000 },
         ],
       },
@@ -357,12 +357,12 @@ export const BEBIDAS_CATEGORIES: MenuCategory[] = [
         id: 'aguardiente-narino',
         name: 'Aguardiente Nariño',
         prices: [
-          { label: 'Botella', amount: 90000 },
+          { label: 'Botella', amount: 80000 },
           { label: 'Media', amount: 70000 },
         ],
       },
-      { id: 'aguardiente-amarillo', name: 'Aguardiente Amarillo', prices: [{ label: 'Botella', amount: 90000 }] },
-      { id: 'aguardiente-antioqueno', name: 'Aguardiente Antioqueño', prices: [{ label: 'Botella', amount: 90000 }] },
+      { id: 'aguardiente-amarillo', name: 'Aguardiente Amarillo', prices: [{ label: 'Botella', amount: 80000 }] },
+      { id: 'aguardiente-antioqueno', name: 'Aguardiente Antioqueño', prices: [{ label: 'Botella', amount: 80000 }] },
     ],
   },
   {
@@ -374,7 +374,7 @@ export const BEBIDAS_CATEGORIES: MenuCategory[] = [
         id: 'ron-viejo-de-caldas',
         name: 'Ron Viejo de Caldas',
         prices: [
-          { label: 'Botella', amount: 100000 },
+          { label: 'Botella', amount: 90000 },
           { label: 'Media', amount: 75000 },
         ],
       },

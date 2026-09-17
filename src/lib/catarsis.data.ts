@@ -102,9 +102,9 @@ export const FULL_MENU: MenuCategory[] = [
     name: 'Licores & Botellas',
     items: [
       { name: 'Aguardiente Blanco Nariño', price: '$80.000', description: '750ml · botella entera' },
-      { name: 'Aguardiente Sin Azúcar', price: '$85.000', description: '750ml · botella entera' },
-      { name: 'Vodka Smirnoff', price: '$120.000', description: '750ml · con mixers incluidos' },
-      { name: 'Ron Medellín Añejo', price: '$100.000', description: '750ml · botella entera' },
+      { name: 'Aguardiente Sin Azúcar', price: '$80.000', description: '750ml · botella entera' },
+      { name: 'Vodka Smirnoff', price: '$80.000', description: '750ml · con mixers incluidos' },
+      { name: 'Ron Medellín Añejo', price: '$90.000', description: '750ml · botella entera' },
       { name: 'Whisky Old Parr', price: '$230.000', description: '750ml · con hielo y vaso' },
       { name: 'Tequila José Cuervo', price: '$160.000', description: '750ml · con sal y limón' },
       { name: 'Champaña Mumm', price: '$180.000', description: '750ml · presentación especial' },
